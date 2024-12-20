@@ -227,7 +227,8 @@ class OnePassword {
     var signInFields = [
       { placeholder: l('email'), id: 'email', type: 'text' },
       { placeholder: l('password'), id: 'password', type: 'password' },
-      { placeholder: l('secretKey'), id: 'secretKey', type: 'password' }
+      { placeholder: l('secretKey'), id: 'secretKey', type: 'password' },
+      { placeholder: l('server'), id: 'server', type: 'text' }
     ]
 
     // Verify the tool by trying to use it to unlock the password store.
@@ -237,7 +238,7 @@ class OnePassword {
       ok: l('dialogConfirmButton'),
       cancel: l('dialogSkipButton'),
       width: 500,
-      height: 250
+      height: 300
     })
 
     for (const key in credentials) {
@@ -246,7 +247,7 @@ class OnePassword {
       }
     }
 
-    const process = new ProcessSpawner(path, ['account', 'add', '--address', 'my.1password.com', '--email', credentials.email, '--secret-key', credentials.secretKey, '--shorthand', 'min-autofill', '--signin', '--raw'], { OP_DEVICE: this.deviceID })
+    const process = new ProcessSpawner(path, ['account', 'add', '--address', credentials.server, '--email', credentials.email, '--secret-key', credentials.secretKey, '--shorthand', 'min-autofill', '--signin', '--raw'], { OP_DEVICE: this.deviceID })
 
     const key = await process.executeSyncInAsyncContext(credentials.password)
     if (!key) {
