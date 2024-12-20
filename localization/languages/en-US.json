@@ -304,6 +304,7 @@
     "email": "Email",
     "password": "Password",
     "secretKey": "Secret key",
+    "server": "Sign-in Address",
     "openExternalApp": "Open in \\\"%s\\\"?", // %s is the name of an app
     "clickToCopy": "Click to copy",
     "copied": "Copied"
